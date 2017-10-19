@@ -24,7 +24,7 @@ Important :
   - The name of full album mp3 must be :
     - unique, and not repeated in any song title
   
--Example of processable timestamps:
+- Example of processable timestamps:
     <br/>Neo-Born Virus 00:00 
     <br/>Colossal Human Consumption 00:51 
     <br/>Genetic Mutations 03:04 
