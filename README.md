@@ -4,16 +4,16 @@ Mp3snipPy
   A simple script for cutting a long full-album mp3 downloaded from youtube into tracks, provided You have the timestamps.
   
   Dependencies :
-    Python 3.*
-    PyDub is required
-      Download it here: https://github.com/jiaaro/pydub
-      or just pip install pydub
-    ffmpeg is required
-      downlaod it here: https://github.com/FFmpeg/FFmpeg
-      or using your package manager, eg. : 
+    - Python 3.*
+    - PyDub is required
+      - Download it here: https://github.com/jiaaro/pydub
+      - or just pip install pydub
+    - ffmpeg is required
+      - downlaod it here: https://github.com/FFmpeg/FFmpeg
+      - or using your package manager, eg. : \n
         sudo apt-get install ffmpeg
         
-  Important :
+Important :
     - The script (in its current iteration) must be placed in the directory where the mp3 is present
     - Most of the tested timestamps formats worked with just copy-paste from youtube descriptions, but there several limitations:
         - You must provide the timestamps in the following formats:
@@ -26,7 +26,7 @@ Mp3snipPy
         
     Example of processable timestamps:
     1. Neo-Born Virus 00:00 
-    2. Colossal Human Consumption [00:51 
+    2. Colossal Human Consumption 00:51 
     3. Genetic Mutations 03:04 
     4. Worm Putrefaction 06:52
     5. Post-Incubation Period 09:21 
