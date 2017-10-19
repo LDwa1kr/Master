@@ -17,22 +17,22 @@ Important :
 - The script (in its current iteration) must be placed in the directory where the mp3 is present
 - Most of the tested timestamps formats worked with just copy-paste from youtube descriptions, but there several limitations:
   - You must provide the timestamps in the following formats:
-    -<timestamp> <title> <timestamp> <title> <timestamp> <title> etc.
-    -<title> <timestamp> <title> <timestamp> <title> <timestamp> etc.
+    - timestamp title timestamp title timestamp title etc.
+    - title timestamp title timestamp title timestamp etc.
   - Only one timestamp per track, digits separated by a colon ":"
   - Whitespaces are ignored, so no worries with \n and \r
   - The name of full album mp3 must be :
     - unique, and not repeated in any song title
-        
-    Example of processable timestamps:
-    1. Neo-Born Virus 00:00 
-    2. Colossal Human Consumption 00:51 
-    3. Genetic Mutations 03:04 
-    4. Worm Putrefaction 06:52
-    5. Post-Incubation Period 09:21 
-    6. Lethal Injection 12:28 
-    7. Viral Disease 15:32 
-    8. Food For The Maggots (Putrid Pile Cover) 18:48
+  
+-Example of processable timestamps:
+    Neo-Born Virus 00:00 
+    Colossal Human Consumption 00:51 
+    Genetic Mutations 03:04 
+    Worm Putrefaction 06:52
+    Post-Incubation Period 09:21 
+    Lethal Injection 12:28 
+    Viral Disease 15:32 
+    Food For The Maggots (Putrid Pile Cover) 18:48
   
   Planned additions :
    - gui used for confirmation and possible editing of timestamp-title sets
