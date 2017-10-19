@@ -25,14 +25,14 @@ Important :
     - unique, and not repeated in any song title
   
 -Example of processable timestamps:
-    Neo-Born Virus 00:00 
-    Colossal Human Consumption 00:51 
-    Genetic Mutations 03:04 
-    Worm Putrefaction 06:52
-    Post-Incubation Period 09:21 
-    Lethal Injection 12:28 
-    Viral Disease 15:32 
-    Food For The Maggots (Putrid Pile Cover) 18:48
+    <br/>Neo-Born Virus 00:00 
+    <br/>Colossal Human Consumption 00:51 
+    <br/>Genetic Mutations 03:04 
+    <br/>Worm Putrefaction 06:52
+    <br/>Post-Incubation Period 09:21 
+    <br/>Lethal Injection 12:28 
+    <br/>Viral Disease 15:32 
+    <br/>Food For The Maggots (Putrid Pile Cover) 18:48
   
   Planned additions :
    - gui used for confirmation and possible editing of timestamp-title sets
