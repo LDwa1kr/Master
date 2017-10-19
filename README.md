@@ -3,11 +3,11 @@ LDwa1kr presents :
 Mp3snipPy
   A simple script for cutting a long full-album mp3 downloaded from youtube into tracks, provided You have the timestamps.
   
-  Dependencies :
-    - Python 3.*
-    - PyDub is required
-      - Download it here: https://github.com/jiaaro/pydub
-      - or just pip install pydub
+Dependencies :
+- Python 3.*
+  - PyDub is required
+    - Download it here: https://github.com/jiaaro/pydub
+    - or just pip install pydub
     - ffmpeg is required
       - downlaod it here: https://github.com/FFmpeg/FFmpeg
       - or using your package manager, eg. : \n
