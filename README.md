@@ -21,7 +21,7 @@ Important :
     - title timestamp title timestamp title timestamp etc.
   - Only one timestamp per track, digits separated by a colon ":"
   - Currently the script only support mp3 up to 10h long
-  - Whitespaces, brackets, commas  etc. in titles etc ignored.
+  - Whitespaces, brackets, commas  etc. in titles are ignored
   - The name of full album mp3 must be :
     - unique, and not repeated in any song title
   
