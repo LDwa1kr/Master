@@ -5,22 +5,23 @@ Mp3snipPy
   
 Dependencies :
 - Python 3.*
-- PyDub is required
+- PyDub
   - Download it here: https://github.com/jiaaro/pydub
   - or just pip install pydub
-- ffmpeg is required
+- ffmpeg
   - downlaod it here: https://github.com/FFmpeg/FFmpeg
   - or using your package manager, eg. : 
         sudo apt-get install ffmpeg
         
 Important :
 - The script (in its current iteration) must be placed in the directory where the mp3 is present
-- Most of the tested timestamps formats worked with just copy-paste from youtube descriptions, but there several limitations:
+- Most of the tested timestamps formats worked with just copy-paste from youtube descriptions, but there are several limitations:
   - You must provide the timestamps in the following formats:
     - timestamp title timestamp title timestamp title etc.
     - title timestamp title timestamp title timestamp etc.
   - Only one timestamp per track, digits separated by a colon ":"
-  - Whitespaces are ignored, so no worries with \n and \r
+  - Currently the script only support mp3 up to 10h long
+  - Whitespaces, brackets, commas  etc. in titles etc ignored.
   - The name of full album mp3 must be :
     - unique, and not repeated in any song title
   
