@@ -4,12 +4,16 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 --><root>
     <nrOfSnoozes>
-        <pon>0</pon>
-        <wt>0</wt>
-        <sr>0</sr>
-        <czw>0</czw>
-        <pt>0</pt>
-        <sob>0</sob>
-        <nd>0</nd>
+        <pon/>
+        <wt/>
+        <sr/>
+        <czw/>
+        <pt/>
+        <sob/>
+        <nd/>
     </nrOfSnoozes>
+    <settings>
+        <maxSnooze>4</maxSnooze>
+        <time>3</time>
+    </settings>
 </root>

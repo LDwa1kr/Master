@@ -8,32 +8,34 @@ package superalarm;
 import java.io.IOException;
 
 /**
- *
+ * Shutdown command "excutor"
  * @author omnissiah
  */
 public class Shutdown {
+    //shuts down the machine, after 5 minutes of final Snooze 
+    static String shutdownCommand;
     public static void destroyEraseImprove() throws RuntimeException, IOException {
         try {
-            Thread.sleep(3000);
-            System.out.println("destroyEraseImprove");
-
+            Thread.sleep(300000);
+            System.out.println("destroyEraseImprove"); //kinda debug
         }catch (InterruptedException e ){
             e.printStackTrace();
         }
-        /** String shutdownCommand;
-            String operatingSystem = System.getProperty("os.name");
-
-            if ("Linux".equals(operatingSystem) || "Mac OS X".equals(operatingSystem)) {
-                shutdownCommand = "shutdown -h now";
-            } else if (operatingSystem.contains("Windows")) {
-                shutdownCommand = "shutdown.exe -s -t 0";
-            } else {
-                throw new RuntimeException("Unsupported operating system.");
-            }
-
-            Runtime.getRuntime().exec(shutdownCommand);
-            System.exit(0); 
+        Runtime.getRuntime().exec(shutdownCommand);
+        System.exit(0); 
         
-        */
+        
+    }
+    public static void operatingSystemDetect(){
+    //determine what type of operating system is the user running
+        String operatingSystem = System.getProperty("os.name");
+        if ((operatingSystem.contains("Linux")) || (operatingSystem.contains("Mac OS X"))) {
+            shutdownCommand = "shutdown -h now";
+        } else if (operatingSystem.contains("Windows")) {
+            shutdownCommand = "shutdown.exe -s -t 0";
+        } else {
+            throw new RuntimeException("Unsupported operating system.");
         }
+
+    }
 }

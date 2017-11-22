@@ -26,69 +26,77 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- *
+ *GUI for SuperAlarm
  * @author omnissiah
  */
 
 class AlarmGraph extends JFrame implements ActionListener {
 	String currentText = null ;
-        JButton goingToSleepB ;
-        JButton SnoozeB ;
-        NewWindowAdapter windowadap = new NewWindowAdapter();
-        @SuppressWarnings("OverridableMethodCallInConstructor")
+    JButton goingToSleepB ;
+    JButton SnoozeB ;
+    NewWindowAdapter windowadap = new NewWindowAdapter();
+    
+    @SuppressWarnings("OverridableMethodCallInConstructor")
 	AlarmGraph(String arg){
 		super("GO TO SLEEP !") ;
-                    SuperAlarm.alarmOn = true;
-                    currentText = arg ;
-                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    setuupButtons();
-                    JPanel panel = new JPanel();
-                    JLabel alarmTextL = new JLabel(new ImageIcon("data/chiki.jpg")) ;
-                this.setAlwaysOnTop(rootPaneCheckingEnabled);
-                this.setSize(500, 500);
+        // SuperAlarm.alarmOn = true; // dont know if required 
+        currentText = arg ;
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setuupButtons();
+        JPanel panel = new JPanel();
+        JLabel alarmTextL = new JLabel(new ImageIcon("src/javaapplication2/data/chiki.jpg")) ;
+        this.setAlwaysOnTop(rootPaneCheckingEnabled);
+        this.setSize(500, 500);
                     
-                panel.add(goingToSleepB);
-                panel.add(alarmTextL) ;
-                panel.add(SnoozeB);
-                add(panel);
+        panel.add(goingToSleepB);
+        panel.add(alarmTextL) ;
+        panel.add(SnoozeB);
+        add(panel);        
+        setVisible(true);
                 
-                setVisible(true);
-                
-                addWindowListener(windowadap);
+        addWindowListener(windowadap);
+
+        if (xmlSnooze.todaysnooze() > MaxSnoozes) ***
+            tooLate tooLateG = new tooLate()
 	}
         
-        public void setuupButtons(){
-                    SnoozeB = new JButton("Snooze") ;
-                    SnoozeB.addActionListener(this);
-                    SnoozeB.setActionCommand("addSnooze");
-                    goingToSleepB = new JButton("Ok, give me 5 minutes") ;
-                    goingToSleepB.addActionListener(this);
-                    goingToSleepB.setActionCommand("waitAndExit");
+    public void setuupButtons(){
+        SnoozeB = new JButton("Snooze") ;
+        SnoozeB.addActionListener(this);
+        SnoozeB.setActionCommand("addSnooze");
+        goingToSleepB = new JButton("Ok, give me 5 minutes") ;
+        goingToSleepB.addActionListener(this);
+        goingToSleepB.setActionCommand("waitAndExit");
         }
-        public void actionPerformed(ActionEvent ae){
-            String action = ae.getActionCommand();
-            if (action == "addSnooze"){
-                System.out.println("Button pushed");
-                new XMLSnooze().newSnooze();
-                new Thread(new waitAfterSnooze()).start();
+    public void actionPerformed(ActionEvent ae){
+        String action = ae.getActionCommand();
+        if (action == "addSnooze"){
+            System.out.println("Button pushed");
+            new XMLSnooze().newSnooze();
+            new Thread(new waitAfterSnooze()).start();
+            AlarmGraph.this.dispose();
+        } else if (action == "waitAndExit"){
+           try{
                 AlarmGraph.this.dispose();
-            } else if (action == "waitAndExit"){
-               try{
-                    AlarmGraph.this.dispose();
-                   Shutdown.destroyEraseImprove();
-               }catch (Exception e ){
-                   System.out.println("Something went wrong whilr thrying to shut down");
-               }
-                   
-            }
-        }
+                Shutdown.destroyEraseImprove();
+           }catch (Exception e ){
+                   System.out.println("Something went wrong while thrying to shut down");
+            }               
+        }    
+    }
 }
 
+class tooLate extends JFrame{
+    tooLate(){
+        super("Too many Soozes today")   ;
+    }
+}
+
+
 class NewWindowAdapter extends WindowAdapter{
-        @Override
-            public void windowClosing(WindowEvent e)
-            {
-                System.out.println("Closed");
-                e.getWindow().dispose();
-            }
-        }
+    @Override    
+    public void windowClosing(WindowEvent e){
+        System.out.println("Closed");
+        e.getWindow().dispose();
+    }
+}
