@@ -1,45 +1,29 @@
 import re
 from pydub import AudioSegment
 import os
-#test cases
 
 time =[]
 f = None
 tit = None
 music = None
+tags= {'artist':'', 'album':''}
 
 class tooLong(Exception):
     def __init__(self, msg):
         self.msg = msg
 
-# title&timestamps open
+def split():
+	print("#########################################################")
+
+# open titles and timestamps 
 def topen():
     global f
-    f = input("enter timestamps and titles name (in this version of script it has to be in the current working directory)\n")
-    #f = open(f).read()
+    f = input("enter timestamps and titles \n")
     f = re.sub("[-\"\'/\,.;\n\r\(\)]"," ", f )
-    print("The index :\n" + f)
 
-def mopen():
-    global music
-    try:
-        music = input("enter mp3 name (in this version of script it has to be in the current working directory)\n")
-        os.path.exists(music)
-        music = AudioSegment.from_mp3(music)
-    except IOError:
-        print ("I/O Error, no such file. Remember to include the extension \".mp3\"")
-        exit(1)
-    except:
-        print("ERROR: Unexpected error")
-
-    print("All set up. Be patient, mp3s of size ~ 100MB take around 2 minutes to cut")
-
-#regex titles
+# set titles for songs
 def settitles():
     global tit
-    #tit = re.findall("(?<=\d\s)(.*)(?=\s)", f)
-    #tit =re.sub("([\s])", "", f)
-    #tit = re.split("[?\s]\d:\d\d[?\s]|[?*\s]\d\d:\d\d:\d\d|[?*\s]\d\d:\d\d", f)
     tit = re.split("\d\d:\d\d:\d\d|\d:\d\d:\d\d|\d\d:\d\d|\d:\d\d", f)
     for i in tit:
         tit[tit.index(i)] = re.sub("^\s*|\s*$", "", tit[tit.index(i)])
@@ -48,20 +32,21 @@ def settitles():
         if not i:
             tit.remove(tit.index(i))
         tit[tit.index(i)] += ".mp3"
-    print("Tracknames: ")
-    print(tit)
 
-#split to get list of hours, minutes and seconds
+# split to get list of timestamps (in ms)
 def settime():
-    # regex numbers
     global time
+    global tit
     num = re.findall("\d\d:\d\d:\d\d|\d:\d\d:\d\d|\d\d:\d\d|\d:\d\d", f)
-    print("Readable timestamps:")
-    print(num)
+    split()
+    print("\nReadable timestamps and tracknames: \n")
+    for el in tit:
+        print(num[tit.index(el)] +"      "+ el)
+
     try:
         for i in num:
             temp = i.split(":")
-            if temp.__len__() == 2: #for timestamp of track, assign h/m/s to stacks of h/m/s
+            if temp.__len__() == 2:
                 time.append(\
                     ((int(temp[0])*60)+(int(temp[1])))*1000)
             elif temp.__len__() == 3:
@@ -74,21 +59,49 @@ def settime():
         print(too.msg)
 
 
-#array with timestamps stacks in h/m/s format
+
+def mopen():
+    global music
+    try:
+        music = input("enter mp3 name (in the current working directory)\n")
+        if (music[-4:] != '.mp3'):
+            music += ".mp3"
+        os.path.exists(music)
+        music = AudioSegment.from_mp3(music)
+    except IOError:
+        print ("I/O Error, no such file.")
+        exit(1)
+    except:
+        print("ERROR: Unexpected error")
+
+    print("All set up. Be patient, mp3s of size ~ 100MB take around 2 minutes to cut")
+
 def sanity():
     global tit
     global time
+    split()
     print("Number of tracks: " + str(len(tit)) +" and timestamps:  "+ str(len(time)))
     try:
         assert len(tit) == len(time)
     except AssertionError as ass:
         print("ERROR: the number of timestamps is not equal to the number of tracks")
         exit(1)
-    print("sanity test passed")
+    print("sanity test passed! :)")
+
+def addtags():
+    global tags
+    split()
+    artist = input("add artist metadata (hit ENTER to cancel)\n")
+    album = input("add album metadata (hit ENTER to cancel)\n")
+    if (artist != ''):
+    	tags['artist'] = artist
+    if (album != ''):
+    	tags['album'] = album
 
 def create():
     global music
     global tit
+    global tags
     assert tit is not None
     assert music is not None
     for i in time:
@@ -96,21 +109,22 @@ def create():
         temp1 = time.index(i)# temporary variable for keeping track of timestamps
         if temp1 <(len(time)-1):
             temp = music[time[temp1]:time[temp1+1]]
-            temp.export(tit[temp1], format="mp3")
-            pass
+            temp.export(tit[temp1], format="mp3", tags=tags)
+            
         else:
             temp = music[time[temp1]:]
-            temp.export(tit[temp1], format="mp3")
-            pass
+            temp.export(tit[temp1], format="mp3", tags=tags)
+            
     print("Done, have a nice day")
 
 def main():
     topen()
-    settime()
     settitles()
+    settime()
     sanity()
+    addtags()
     mopen()
     create()
-    pass
+    
 
 main()
